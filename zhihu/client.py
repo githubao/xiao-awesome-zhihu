@@ -25,9 +25,9 @@ logging.basicConfig(level=logging.INFO)
 import requests
 import urllib3
 
-from .before_login_auth import BeforeLoginAuth
+from oauth.before_login_auth import BeforeLoginAuth
 from zhihu.utils import *
-from .zhihu_oauth import *
+from oauth.zhihu_oauth import *
 
 __all__ = ['ZhihuClient']
 
@@ -164,6 +164,13 @@ class ZhihuClient:
             self._session.proxies.clear()
         else:
             self._session.proxies.update({'http':proxy,'https':proxy})
+
+
+    @int_id
+    @need_login
+    def answer(self,aid):
+        from zhcls.answer import Answer
+        return Answer(aid,None,self._session)
 
 
 

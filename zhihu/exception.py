@@ -15,6 +15,8 @@
 @time: 2016/10/5 22:13
 """
 
+from json import JSONDecodeError
+
 class UnexpectedResponseException(Exception):
     def __init__(self,url,res,expect):
         self.url = url
