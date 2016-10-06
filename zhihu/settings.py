@@ -29,7 +29,8 @@ ADAPTER_WITH_RETRY = adapters.HTTPAdapter(
 )
 
 # captcha_file
-ROOT_PATH = os.path.abspath(__file__).replace(os.path.basename(__file__),"")
+ROOT_PATH = os.path.abspath(__file__).replace(os.path.basename(__file__), "")
+FILE_ROOT_PATH = ROOT_PATH + 'files/'
 CAPTCHA_FILE = ROOT_PATH + '/files/captcha.gif'
 TOKEN_FILE = ROOT_PATH + '/files/token.pkl'
 
@@ -59,7 +60,7 @@ ZHIHU_API_ROOT = 'https://api.zhihu.com'
 CAPTCHA_URL = ZHIHU_API_ROOT + '/captcha'
 LOGIN_URL = ZHIHU_API_ROOT + '/sign_in'
 
-#login format
+# login format
 LOGIN_DATA = {
     'grant_type': 'password',
     'source': 'com.zhihu.andriod',
@@ -70,7 +71,7 @@ LOGIN_DATA = {
     'password': '',
 }
 
-#知乎实体类 正则
+# 知乎实体类 正则
 re_answer_url = re.compile(r'^(?:https:?//)?www.zhihu.com/question/\d+/answer/(\d+)/?$')
 re_article_url = re.compile(r'^(?:https:?//)?zhuanlan.zhihu.com/p/(\d+)/?$')
 re_collection_url = re.compile(r'^(?:https:?//)?www.zhihu.com/collection/(\d+)/?$')
@@ -81,12 +82,12 @@ re_question_url = re.compile(r'^(?:https:?//)?www.zhihu.com/question/([\d]+)/?$'
 re_topic_url = re.compile(r'^(?:https:?//)?www.zhihu.com/topic/([\d]+)/?$')
 
 "True False 的意思是，是否需要转化成整数"
-RE_FUNC_MAP={
-    re_answer_url:('answer',True),
-    re_article_url:('article',True),
-    re_collection_url:('collection',True),
-    re_column_url:('column',False),
-    re_people_url:('people',False),
-    re_question_url:('question',True),
-    re_topic_url:('answer',True),
+RE_FUNC_MAP = {
+    re_answer_url: ('answer', True),
+    re_article_url: ('article', True),
+    re_collection_url: ('collection', True),
+    re_column_url: ('column', False),
+    re_people_url: ('people', False),
+    re_question_url: ('question', True),
+    re_topic_url: ('answer', True),
 }

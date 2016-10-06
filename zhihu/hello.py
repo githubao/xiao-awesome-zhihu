@@ -22,8 +22,13 @@ def main():
     print(ROOT_PATH)
     print(__file__)
 
+def test():
+    s = '.'
+    with open(s, 'wb') as f:
+        f.write(b"1")
 
-def todo():
+
+def to_do():
     l = ['十个实体类实现', '实体类client里面的属性', '实体类的generator', '测试']
     for i in l:
         print(i)
@@ -31,4 +36,5 @@ def todo():
 
 if __name__ == '__main__':
     # main()
-    todo()
+    # to_do()
+    test()

@@ -15,11 +15,15 @@
 @time: 2016/10/6 13:34
 """
 
+from zhcls.base import Base
+from zhcls.generator import generator_of
+from zhcls.normal import normal_attr
+from zhcls.streaming import streaming
+from zhcls.urls import *
 
-def main():
-    print("do sth")
-
-
-if __name__ == '__main__':
-    main()
+class Topic(Base):
+    def __init__(self,tid,cache,session):
+        super(Topic, self).__init__(tid,cache,session)
+    def _build_url(self):
+        return TOPIC_DETAIL_URL.format(self._id)
 

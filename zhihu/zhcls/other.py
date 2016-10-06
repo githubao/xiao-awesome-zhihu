@@ -31,19 +31,21 @@ def other_obj(class_name=None, name_in_json=None):
             cls_name = class_name or func.__name__
             cls_name = cls_name.capitalize()
             name = name_in_json or func.__name__
-            file_name = '.' + cls_name.lower()
+            # file_name = '.' + cls_name.lower()
+            file_name = cls_name.lower()
 
             try:
-                module = importlib.import_module(file_name, 'zhihu.zhcls')
-                cls = getattr(module, class_name)
-            except (ImportError, AttributeError):
+                module = importlib.import_module('zhcls.'+file_name)
+                cls = getattr(module, cls_name)
+            except (ImportError, AttributeError) as e:
+                logging.error(e)
                 from .base import Base
                 cls = Base
 
-            logging.info('import cls is: ' + cls)
+            # logging.info('import cls is: ' + cls.__name__)
 
             if self._cache and name in self._cache:
-                return self._cache[name]
+                cache = self._cache[name]
             else:
                 self._get_data()
                 if self._data and name in self._data:

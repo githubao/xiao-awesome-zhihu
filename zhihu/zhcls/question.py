@@ -31,17 +31,17 @@ class Question(Base):
 
     # normal
     @property
-    @normal_attr
+    @normal_attr()
     def allow_delete(self):
         return None
 
     @property
-    @normal_attr
+    @normal_attr()
     def answer_count(self):
         return None
 
     @property
-    @normal_attr
+    @normal_attr()
     def comment_count(self):
         return None
 
@@ -51,27 +51,27 @@ class Question(Base):
         return None
 
     @property
-    @normal_attr
+    @normal_attr()
     def follow_count(self):
         return None
 
     @property
-    @normal_attr
+    @normal_attr()
     def id(self):
         return self._id
 
     @property
-    @normal_attr
+    @normal_attr()
     def detail(self):
         return None
 
     @property
-    @normal_attr
+    @normal_attr()
     def title(self):
         return None
 
     @property
-    @normal_attr
+    @normal_attr()
     def updated_time(self):
         return None
 

@@ -47,6 +47,6 @@ def normal_attr(name_in_json=None):
                 if self._data:
                     return use_data_or_func(name, self._data)
 
-            return wrapper
+        return wrapper
 
-        return wrappers_wrapper
+    return wrappers_wrapper

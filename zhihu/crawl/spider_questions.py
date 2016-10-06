@@ -17,6 +17,7 @@
 
 from crawl.login_zhihu import log_in
 import logging
+from settings import *
 
 
 def demo():
@@ -25,14 +26,17 @@ def demo():
         logging.error('log in failed')
         return
 
-    question = client.question(20259295)
+    question = client.question(23220398)
     cnt = 0
+    sum = question.answer_count
     for ans in question.answers:
-        if cnt == 5:
-            break
+        print(ans.author.name)
+        ans.save(question.title)
 
-        print(ans.content)
         cnt += 1
+        percent = cnt*100 /sum
+        if isinstance(percent,int):
+            print('processing {} percent, total is {} items'.format(percent,sum))
 
 
 def main():

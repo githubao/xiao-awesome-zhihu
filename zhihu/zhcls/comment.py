@@ -15,11 +15,19 @@
 @time: 2016/10/6 13:35
 """
 
+from zhcls.base import Base
+from zhcls.generator import generator_of
+from zhcls.normal import normal_attr
+from zhcls.streaming import streaming
+from zhcls.urls import *
 
-def main():
-    print("do sth")
 
+class Comment(Base):
+    def __init__(self, tid, cache, session):
+        super(Comment, self).__init__(tid, cache, session)
 
-if __name__ == '__main__':
-    main()
+    def _build_url(self):
+        return ''
 
+    def _get_data(self):
+        self._data = None

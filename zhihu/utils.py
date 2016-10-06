@@ -21,8 +21,10 @@ import hmac
 import os
 import time
 from html.parser import HTMLParser
+import logging
 
 from exception import *
+from settings import FILE_ROOT_PATH
 
 
 def login_signature(data, secret):
@@ -162,19 +164,25 @@ def get_result_or_error(url, res):
         )
 
 
-def common_save(path, filename, content, default_filename, invalid_chars):
-    filename = filename or default_filename
+def common_save(_path, _filename, content, default_filename, invalid_chars):
+    filename = _filename or default_filename
     filename = remove_invalid_chars(filename, invalid_chars)
     filename = filename or 'untitled'
 
-    path = path or '.'
+    path = _path or '.'
     path = remove_invalid_chars(path, invalid_chars, True)
     path = path or '.'
+
+    # 在path前面加上FILE_ROOT_PATH
+    path = FILE_ROOT_PATH + path
 
     if not os.path.isdir(path):
         os.makedirs(path)
     full_path = os.path.join(path, filename)
     full_path = add_serial_number(full_path, '.html')
+
+    logging.info('save file in: ' + full_path)
+
     formatter = SimpleHtmlFormatter()
     formatter.feed(content)
     with open(full_path, 'wb') as f:
@@ -205,6 +213,6 @@ def add_serial_number(file_path, postfix):
     serial = 1
     while os.path.isfile(full_path):
         serial_str = str(serial)
-        full_path = file_path + '-' + serial_str.rjust(3, '000') + '.' + postfix
+        full_path = file_path + '-' + serial_str.rjust(3, '0') + postfix
         serial += 1
     return full_path

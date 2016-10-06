@@ -52,8 +52,8 @@ class BaseGenerator(object):
         res = self._session.get(self._next_url, params=params)
 
         if res.ok:
-            logging.error('http request err!!!')
-            logging.error(res.content.decode())
+            logging.error('http request err,status code is {}'.format(res.status))
+            # logging.error(res.content.decode())
 
         try:
             j = res.json()
@@ -155,14 +155,14 @@ class AnswerGenerator(BaseGenerator):
         return Answer(data['id'], data, self._session)
 
 
-# question
-class QuestionGenerator(BaseGenerator):
+# comment
+class CommentGenerator(BaseGenerator):
     def __init__(self, url, session):
-        super(QuestionGenerator, self).__init__(url, session)
+        super(CommentGenerator, self).__init__(url, session)
 
     def _build_obj(self, data):
-        from .question import Question
-        return Question(data['id'], data, self._session)
+        from .comment import Comment
+        return Comment(data['id'], data, self._session)
 
 
 # people
@@ -173,22 +173,43 @@ class PeopleGenerator(BaseGenerator):
     def _build_obj(self, data):
         from .people import People
 
-        #hack for topic.best_answerers
+        # hack for topic.best_answerers
         if data['type'] == 'best_answerers':
             data = data['member']
 
         return People(data['id'], data, self._session)
 
 
+# question
+class QuestionGenerator(BaseGenerator):
+    def __init__(self, url, session):
+        super(QuestionGenerator, self).__init__(url, session)
+
+    def _build_obj(self, data):
+        from .question import Question
+        return Question(data['id'], data, self._session)
+
+
+# topic
+class TopicGenerator(BaseGenerator):
+    def __init__(self, url, session):
+        super(TopicGenerator, self).__init__(url, session)
+
+    def _build_obj(self, data):
+        from .topic import Topic
+        return Topic(data['id'], data, self._session)
+
+
 def generator_of(url_pattern, class_name=None):
     """
-对象生成器，爬取数据
+    对象生成器，爬取数据
     """
 
     def wrappers_wrapper(func):
         @functools.wraps(func)
         def wrapper(self, *args, **kwargs):
             cls_name = class_name or func.__name__
+
             if cls_name.endswith('s'):
                 cls_name = cls_name[:-1]
             cls_name = cls_name.capitalize()
@@ -201,7 +222,7 @@ def generator_of(url_pattern, class_name=None):
                 return func(*args, **kwargs)
 
             self._get_data()
-            return gen_cls(url_pattern.format(self.id), self._session)
+            return gen_cls(url_pattern.format(self._id), self._session)
 
         return wrapper
 

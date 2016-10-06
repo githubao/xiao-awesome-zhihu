@@ -15,11 +15,11 @@
 @time: 2016/10/6 13:35
 """
 
-from .base import Base
-from .generator import generator_of
-from .normal import normal_attr
-from .streaming import streaming
-from .urls import *
+from zhcls.base import Base
+from zhcls.generator import generator_of
+from zhcls.normal import normal_attr
+from zhcls.streaming import streaming
+from zhcls.urls import *
 
 
 class _Anonymous(object):

@@ -18,6 +18,7 @@
 from abc import abstractmethod
 from exception import *
 
+
 class Base(object):
     def __init__(self, zhihu_obj_id, cache, session):
         self._id = zhihu_obj_id
@@ -34,7 +35,7 @@ class Base(object):
                 data=self._build_data(),
         )
 
-        e = Exception('err in parse json: {},{}'.format(self.__class__.__name__, j))
+        e = GetDataErrorException(url, res, 'a valid Zhihu {} JSON data'.format(self.__class__.__name__))
 
         try:
             j = res.json()
