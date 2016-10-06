@@ -17,11 +17,18 @@
 
 from settings import *
 
+
 def main():
     print(ROOT_PATH)
     print(__file__)
 
 
-if __name__ == '__main__':
-    main()
+def todo():
+    l = ['十个实体类实现', 'util里面的工具', 'generator的定义', '测试']
+    for i in l:
+        print(i)
 
+
+if __name__ == '__main__':
+    # main()
+    todo()

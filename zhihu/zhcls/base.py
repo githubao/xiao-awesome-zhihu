@@ -18,7 +18,6 @@
 from abc import abstractmethod
 from exception import *
 
-
 class Base(object):
     def __init__(self, zhihu_obj_id, cache, session):
         self._id = zhihu_obj_id
