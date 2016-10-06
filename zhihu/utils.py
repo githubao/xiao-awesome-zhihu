@@ -216,3 +216,11 @@ def add_serial_number(file_path, postfix):
         full_path = file_path + '-' + serial_str.rjust(3, '0') + postfix
         serial += 1
     return full_path
+
+
+def print_progress_percent(done, sum):
+    base = 100 / sum
+    progress = base * done
+
+    if int(progress) != int(progress - base):
+        logging.info('processing {}%({}), total is {} items'.format(int(progress), done, sum))

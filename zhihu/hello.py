@@ -16,14 +16,16 @@
 """
 
 from settings import *
+from utils import *
 
 
 def main():
     print(ROOT_PATH)
     print(__file__)
 
+
 def test():
-    s = '.'
+    s = 'path'
     with open(s, 'wb') as f:
         f.write(b"1")
 
@@ -34,7 +36,16 @@ def to_do():
         print(i)
 
 
+def test_loop():
+    sum = 224
+    cnt = 0
+    for i in range(0, sum):
+        cnt += 1
+        print_progress_percent(cnt, sum)
+
+
 if __name__ == '__main__':
     # main()
     # to_do()
-    test()
+    # test()
+    test_loop()

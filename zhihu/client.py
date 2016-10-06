@@ -194,6 +194,13 @@ class ZhihuClient:
         else:
             self._session.proxies.update({'http': proxy, 'https': proxy})
 
+    # zhcls as property
+    @int_id
+    @need_login
+    def question(self, qid):
+        from zhcls.question import Question
+        return Question(qid, None, self._session)
+
     @int_id
     @need_login
     def answer(self, aid):
@@ -203,8 +210,38 @@ class ZhihuClient:
     @int_id
     @need_login
     def question(self, qid):
-        from zhcls.question import Question
-        return Question(qid, None, self._session)
+        from zhcls.article import Article
+        return Article(qid, None, self._session)
+
+    @int_id
+    @need_login
+    def collection(self, qid):
+        from zhcls.collection import Collection
+        return Collection(qid, None, self._session)
+
+    @int_id
+    @need_login
+    def column(self, qid):
+        from zhcls.column import Column
+        return Column(qid, None, self._session)
+
+    @int_id
+    @need_login
+    def me(self, qid):
+        from zhcls.me import Me
+        return Me(qid, None, self._session)
+
+    @int_id
+    @need_login
+    def people(self, qid):
+        from zhcls.people import People
+        return People(qid, None, self._session)
+
+    @int_id
+    @need_login
+    def topic(self, qid):
+        from zhcls.topic import Topic
+        return Topic(qid, None, self._session)
 
     @need_login
     def from_url(self, url):

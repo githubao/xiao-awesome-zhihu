@@ -33,10 +33,10 @@ def demo():
         print(ans.author.name)
         ans.save(question.title)
 
+        flag = cnt * 100 % sum
+        if not flag:
+            print('processing {}%, total is {} items'.format(cnt * 100 // sum, sum))
         cnt += 1
-        percent = cnt*100 /sum
-        if isinstance(percent,int):
-            print('processing {} percent, total is {} items'.format(percent,sum))
 
 
 def main():

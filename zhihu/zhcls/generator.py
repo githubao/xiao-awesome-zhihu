@@ -155,6 +155,36 @@ class AnswerGenerator(BaseGenerator):
         return Answer(data['id'], data, self._session)
 
 
+# article
+class ArticleGenerator(BaseGenerator):
+    def __init__(self, url, session):
+        super(ArticleGenerator, self).__init__(url, session)
+
+    def _build_obj(self, data):
+        from .article import Article
+        return Article(data['id'], data, self._session)
+
+
+# collection
+class CollectionGenerator(BaseGenerator):
+    def __init__(self, url, session):
+        super(CollectionGenerator, self).__init__(url, session)
+
+    def _build_obj(self, data):
+        from .collection import Collection
+        return Collection(data['id'], data, self._session)
+
+
+# collection
+class ColumnGenerator(BaseGenerator):
+    def __init__(self, url, session):
+        super(ColumnGenerator, self).__init__(url, session)
+
+    def _build_obj(self, data):
+        from .column import Column
+        return Column(data['id'], data, self._session)
+
+
 # comment
 class CommentGenerator(BaseGenerator):
     def __init__(self, url, session):
@@ -199,6 +229,15 @@ class TopicGenerator(BaseGenerator):
         from .topic import Topic
         return Topic(data['id'], data, self._session)
 
+
+# activity
+class ActivityGenerator(BaseGenerator):
+    def __init__(self, url, session):
+        super(ActivityGenerator, self).__init__(url, session)
+
+    def _build_obj(self, data):
+        from .activity import Activity
+        return Activity(data, self._session)
 
 def generator_of(url_pattern, class_name=None):
     """

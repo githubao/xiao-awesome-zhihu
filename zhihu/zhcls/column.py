@@ -15,11 +15,14 @@
 @time: 2016/10/6 14:21
 """
 
+from .base import Base
+from .normal import normal_attr
+from .other import other_obj
+from .streaming import streaming
+from .generator import generator_of
 
-def main():
-    print("do sth")
+class Column(Base):
+    def __init__(self, aid, cache, session):
+        super(Column, self).__init__(aid, cache, session)
 
-
-if __name__ == '__main__':
-    main()
 

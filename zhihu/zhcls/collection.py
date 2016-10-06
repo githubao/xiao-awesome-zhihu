@@ -16,10 +16,13 @@
 """
 
 
-def main():
-    print("do sth")
+from .base import Base
+from .normal import normal_attr
+from .other import other_obj
+from .streaming import streaming
+from .generator import generator_of
 
-
-if __name__ == '__main__':
-    main()
+class Collection(Base):
+    def __init__(self, aid, cache, session):
+        super(Collection, self).__init__(aid, cache, session)
 
