@@ -199,3 +199,15 @@ class ZhihuClient:
     def answer(self, aid):
         from zhcls.answer import Answer
         return Answer(aid, None, self._session)
+
+    @need_login
+    def from_url(self, url):
+        for re, val in RE_FUNC_MAP.items():
+            match = re.match(url)
+            if match:
+                zhihu_obj_id = match(1)
+                func_name, need_int_id = val
+                if need_int_id:
+                    zhihu_obj_id = int(zhihu_obj_id)
+                return getattr(self, func_name)(zhihu_obj_id)
+        raise ValueError('Invalid zhihu object url !')

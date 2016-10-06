@@ -15,7 +15,25 @@
 @time: 2016/10/5 22:54
 """
 
-class Answer():
-    def __init__(self,aid,cache,session):
-        pass
+from .base import Base
+from .urls import (
+ANSWER_DETAIL_URL,
+ANSWER_COLLECTIONS_URL,
+ANSWER_COMMENTS_URL,
+ANSWER_VOTERS_URL
+)
+from .normal import normal_attr
 
+
+class Answer(Base):
+    def __init__(self,aid,cache,session):
+        super(Answer,self).__init__(aid,cache,session)
+
+    def _build_url(self):
+        return ANSWER_DETAIL_URL.format(self.id)
+
+
+    @property
+    @normal_attr()
+    def id(self):
+        return self._id

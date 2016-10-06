@@ -55,3 +55,8 @@ def int_id(func):
         return func(self, *args, **kwargs)
 
     return wrapper
+
+
+# 判断data里面，是否有name的key的value
+def can_get_from(name, data):
+    return name in data and not isinstance(data[name], (dict, list))

@@ -18,6 +18,7 @@
 from requests import adapters
 from urllib.parse import urlencode
 import os
+import re
 
 # request retry
 ADAPTER_WITH_RETRY = adapters.HTTPAdapter(
@@ -53,11 +54,12 @@ APP_ZA = urlencode({
     'Installer': u'知乎'.encode(),
 })
 
-# zhihu api
+# zhihu api url
 ZHIHU_API_ROOT = 'https://api.zhihu.com'
 CAPTCHA_URL = ZHIHU_API_ROOT + '/captcha'
 LOGIN_URL = ZHIHU_API_ROOT + '/sign_in'
 
+#login format
 LOGIN_DATA = {
     'grant_type': 'password',
     'source': 'com.zhihu.andriod',
@@ -66,4 +68,25 @@ LOGIN_DATA = {
     'timestramp': '',
     'username': '',
     'password': '',
+}
+
+#知乎实体类 正则
+re_answer_url = re.compile(r'^(?:https:?//)?www.zhihu.com/question/\d+/answer/(\d+)/?$')
+re_article_url = re.compile(r'^(?:https:?//)?zhuanlan.zhihu.com/p/(\d+)/?$')
+re_collection_url = re.compile(r'^(?:https:?//)?www.zhihu.com/collection/(\d+)/?$')
+# TODO 更新专栏的正则
+re_column_url = re.compile(r'^(?:https:?//)?zhuanlan.zhihu.com/([^/]+)/?$')
+re_people_url = re.compile(r'^(?:https:?//)?www.zhihu.com/people/([^/]+)/?$')
+re_question_url = re.compile(r'^(?:https:?//)?www.zhihu.com/question/([\d]+)/?$')
+re_topic_url = re.compile(r'^(?:https:?//)?www.zhihu.com/topic/([\d]+)/?$')
+
+"True False 的意思是，是否需要转化成整数"
+RE_FUNC_MAP={
+    re_answer_url:('answer',True),
+    re_article_url:('article',True),
+    re_collection_url:('collection',True),
+    re_column_url:('column',False),
+    re_people_url:('people',False),
+    re_question_url:('question',True),
+    re_topic_url:('answer',True),
 }
