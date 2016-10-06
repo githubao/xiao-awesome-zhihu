@@ -11,7 +11,7 @@
 @contact: mailbaoqiang@gmail.com
 @site: http://www.github.com/githubao
 @software: PyCharm
-@file: token.py
+@file: zhihu_token.py
 @time: 2016/10/5 21:28
 """
 
@@ -56,7 +56,7 @@ class ZhihuToken:
     @staticmethod
     def from_file(filename):
         with open(filename, 'rb') as f:
-            return pickle.loads(f)
+            return pickle.load(f)
 
     def save(self, filename):
         with open(filename, 'wb') as f:

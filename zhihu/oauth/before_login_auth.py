@@ -29,6 +29,7 @@ class BeforeLoginAuth(ImAndroidClient):
         super(BeforeLoginAuth, self).__init__(api_version, app_version, app_build, app_za, uuid, ua)
         self._client_id = client_id
 
-    def __call(self, r):
+    def __call__(self, r):
         r = super(BeforeLoginAuth, self).__call__(r)
         r.headers['Authorization'] = 'oauth {0}'.format(self._client_id)
+        return r

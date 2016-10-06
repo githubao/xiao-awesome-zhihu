@@ -16,7 +16,7 @@
 """
 
 from .im_andriod import *
-from .token import *
+from .zhihu_token import *
 
 
 class ZhihuOAuth(ImAndroidClient):
@@ -31,7 +31,8 @@ class ZhihuOAuth(ImAndroidClient):
 
     def __call__(self, r):
         r = super(ZhihuOAuth, self).__call__(r)
-        r.headers['Authorization'] = '{type}{token}'.format(
+        r.headers['Authorization'] = '{type} {token}'.format(
                 type=str(self._token.type.capitalize()),
                 token=str(self._token.token)
         )
+        return r

@@ -17,6 +17,7 @@
 
 from requests import adapters
 from urllib.parse import urlencode
+import os
 
 # request retry
 ADAPTER_WITH_RETRY = adapters.HTTPAdapter(
@@ -26,8 +27,10 @@ ADAPTER_WITH_RETRY = adapters.HTTPAdapter(
         )
 )
 
-#captcha_file
-CAPTCHA_FILE= 'captcha.gif'
+# captcha_file
+ROOT_PATH = os.path.abspath(__file__).replace(os.path.basename(__file__),"")
+CAPTCHA_FILE = ROOT_PATH + '/files/captcha.gif'
+TOKEN_FILE = ROOT_PATH + '/files/token.pkl'
 
 # oAuth keys
 CLIENT_ID = '8d5227e0aaaa4797a763ac64e0c3b8'
