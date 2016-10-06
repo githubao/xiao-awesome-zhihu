@@ -200,6 +200,12 @@ class ZhihuClient:
         from zhcls.answer import Answer
         return Answer(aid, None, self._session)
 
+    @int_id
+    @need_login
+    def question(self, qid):
+        from zhcls.question import Question
+        return Question(qid, None, self._session)
+
     @need_login
     def from_url(self, url):
         for re, val in RE_FUNC_MAP.items():

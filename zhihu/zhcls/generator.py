@@ -145,6 +145,7 @@ class BaseGenerator(object):
         return self
 
 
+# answer
 class AnswerGenerator(BaseGenerator):
     def __init__(self, url, session):
         super(AnswerGenerator, self).__init__(url, session)
@@ -154,7 +155,32 @@ class AnswerGenerator(BaseGenerator):
         return Answer(data['id'], data, self._session)
 
 
-def generator_of(url_pattern, class_name=True):
+# question
+class QuestionGenerator(BaseGenerator):
+    def __init__(self, url, session):
+        super(QuestionGenerator, self).__init__(url, session)
+
+    def _build_obj(self, data):
+        from .question import Question
+        return Question(data['id'], data, self._session)
+
+
+# people
+class PeopleGenerator(BaseGenerator):
+    def __init__(self, url, session):
+        super(PeopleGenerator, self).__init__(url, session)
+
+    def _build_obj(self, data):
+        from .people import People
+
+        #hack for topic.best_answerers
+        if data['type'] == 'best_answerers':
+            data = data['member']
+
+        return People(data['id'], data, self._session)
+
+
+def generator_of(url_pattern, class_name=None):
     """
 对象生成器，爬取数据
     """

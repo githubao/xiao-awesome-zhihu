@@ -24,7 +24,7 @@ def main():
 
 
 def todo():
-    l = ['十个实体类实现', 'util里面的工具', 'generator的定义', '测试']
+    l = ['十个实体类实现', '实体类client里面的属性', '实体类的generator', '测试']
     for i in l:
         print(i)
 

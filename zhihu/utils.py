@@ -22,7 +22,7 @@ import os
 import time
 from html.parser import HTMLParser
 
-from .exception import *
+from exception import *
 
 
 def login_signature(data, secret):

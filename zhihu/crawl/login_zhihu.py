@@ -26,13 +26,15 @@ def log_in():
 
     if os.path.isfile(TOKEN_FILE):
         if not client.load_token(TOKEN_FILE):
-            return False
+            return None
     else:
         if not client.login_in_terminal():
             logging.error('log_in_terminal failed')
-            return False
+            return None
 
         client.save_token(TOKEN_FILE)
+
+    return client
 
     return True
 
