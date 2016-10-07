@@ -31,7 +31,7 @@ def test():
 
 
 def to_do():
-    l = ['十个实体类实现', '实体类client里面的属性', '实体类的generator', '测试']
+    l = ['me类里面的9个方法实现', '测试']
     for i in l:
         print(i)
 
@@ -45,7 +45,7 @@ def test_loop():
 
 
 if __name__ == '__main__':
-    # main()
+    main()
     # to_do()
     # test()
-    test_loop()
+    # test_loop()
